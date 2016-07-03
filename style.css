@@ -1,0 +1,158 @@
+/*
+    Global settings hered
+*/
+
+*{
+    box-sizing: border-box;
+    font-family: 'Roboto','Lobster',sans-serif;
+}
+
+/*
+    Container specific settings here
+*/
+
+div.container{
+    position: relative;
+}
+
+/*
+    Header specific settings here
+*/
+
+div.header{
+    position: fixed;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    z-index: 999;
+    /* Permalink - use to edit and share this gradient:  http: //colorzilla.com/gradient-editor/#9ecb2d+0,72aa00+49,8eb92a+50,bfd255+100 */
+    background: rgb(158,203,45); /* Old browsers */
+    background: -moz-linear-gradient(-45deg, rgba(158,203,45,1) 0%, rgba(114,170,0,1) 49%, rgba(142,185,42,1) 50%, rgba(191,210,85,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, rgba(158,203,45,1) 0%,rgba(114,170,0,1) 49%,rgba(142,185,42,1) 50%,rgba(191,210,85,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, rgba(158,203,45,1) 0%,rgba(114,170,0,1) 49%,rgba(142,185,42,1) 50%,rgba(191,210,85,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#9ecb2d', endColorstr='#bfd255',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    background-color:#000000;
+}
+
+div.header-text h3,span{
+    color: #FFFFFF;
+    margin-left: 10px;
+}
+
+div.header-text span{
+    display:block;
+    font-size:12px;
+    margin-bottom:10px;
+    margin-top:-10px;
+}
+
+div.header-text h3{
+    font-family:'Bungee Inline','Lobster';
+    font-weight:normal;
+}
+
+/*
+    Main content specific settings here
+*/
+div.search-box{
+    position: relative;
+    max-width: 100%;
+    margin: 0px auto;
+    margin-top: 70px;
+    padding: 5px;
+}
+
+div.search-box input{
+    display: block;
+    width: 30%;
+    margin: 0px auto;
+    height: 30px;
+    padding: 5px;
+    border: 1px solid gray;
+}
+
+div.search-box h2,p{
+    text-align: center;
+}
+
+div.search-box p{
+    font-style:italic;
+    font-size: 12px;
+    margin-top: 15px;
+}
+
+div.search-group{
+    position:relative;
+    width:90%;
+    margin:0px auto;
+    text-align:center; /* Horizontall align elements in the center */
+}
+
+/*
+    Align items in the middle
+
+div.search-group > *{
+    vertical-align:middle;
+}
+
+*/
+
+div.search-group input.input-search,i{
+    display:inline-block;
+    vertical-align:top;/* Vertical align items  */
+}
+
+div.search-group input.input-search{
+    position:relative;
+    width:30%;
+}
+
+div.search-group i{
+    border:1px solid gray;
+    height:30px;
+    width:30px;
+    margin-left:-5px;
+    padding-top:5px;
+}
+
+div.search-group a{
+    text-decoration:none;
+    cursor:pointer;
+    border:1px solid gray;
+    height:30px;
+    width:30px;
+    margin-left:-5px;
+    padding-top:5px;
+}
+
+div.search-group a:link,a:visited{
+    background-color:#F1F1F1;    
+}
+
+div.search-group a:hover,a:active{
+    background-color:#c4f755;    
+}
+
+/*
+    Horizontal ruler specific settings here
+*/
+div.hr hr{
+    color: #8BB726;
+    width: 90%;
+    margin: 0px auto;
+}
+
+/*
+    Search result specific settings here
+*/
+div.search-result-box{
+    position:relative;
+    width:90%;
+    margin: 0px auto;
+    text-align:center;
+}
+
+div.search-result-box p{
+    font-family:'Shadows Into Light';
+    font-size:x-large;
+}
