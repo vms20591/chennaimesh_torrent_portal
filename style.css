@@ -12,7 +12,27 @@
 */
 
 div.container{
-    position: relative;
+    margin: 0px auto;
+    padding:10px;
+}
+
+/*
+    Reuse from bootstrap framework
+*/
+@media (min-width: 768px) {
+  div.container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  div.container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  div.container {
+    width: 1170px;
+  }
 }
 
 /*
@@ -56,23 +76,9 @@ div.header-text h3{
 */
 div.search-box{
     position: relative;
-    max-width: 100%;
-    margin: 0px auto;
     margin-top: 70px;
     padding: 5px;
-}
-
-div.search-box input{
-    display: block;
-    width: 30%;
-    margin: 0px auto;
-    height: 30px;
-    padding: 5px;
-    border: 1px solid gray;
-}
-
-div.search-box h2,p{
-    text-align: center;
+    text-align: center /*Horizontal align elemnts in the center*/
 }
 
 div.search-box p{
@@ -85,7 +91,6 @@ div.search-group{
     position:relative;
     width:90%;
     margin:0px auto;
-    text-align:center; /* Horizontall align elements in the center */
 }
 
 /*
@@ -100,19 +105,23 @@ div.search-group > *{
 div.search-group input.input-search,i{
     display:inline-block;
     vertical-align:top;/* Vertical align items  */
+    border: 1px solid gray;
+    height: 30px;
 }
 
 div.search-group input.input-search{
-    position:relative;
-    width:30%;
+    width: 30%;
+    padding: 5px;
+    border-right:0;
 }
 
-div.search-group i{
-    border:1px solid gray;
-    height:30px;
-    width:30px;
-    margin-left:-5px;
-    padding-top:5px;
+/*
+    Small hack to have <input> display responsive
+*/
+@media screen and (max-width: 768px) {
+  div.search-group input.input-search {
+    width: 80%;
+  }
 }
 
 div.search-group a{
@@ -130,7 +139,7 @@ div.search-group a:link,a:visited{
 }
 
 div.search-group a:hover,a:active{
-    background-color:#c4f755;    
+    background-color:#C4F755;    
 }
 
 /*
