@@ -12,27 +12,7 @@
 */
 
 div.container{
-    margin: 0px auto;
-    padding:10px;
-}
-
-/*
-    Reuse from bootstrap framework
-*/
-@media (min-width: 768px) {
-  div.container {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) {
-  div.container {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
-  div.container {
-    width: 1170px;
-  }
+    position: relative;
 }
 
 /*
@@ -80,7 +60,19 @@ div.search-box{
     margin: 0px auto;
     margin-top: 100px;
     padding: 5px;
-    text-align: center /*Horizontal align elemnts in the center*/
+}
+
+div.search-box input{
+    display: block;
+    width: 30%;
+    margin: 0px auto;
+    height: 30px;
+    padding: 5px;
+    border: 1px solid gray;
+}
+
+div.search-box h2,p{
+    text-align: center;
 }
 
 div.search-box p{
@@ -93,6 +85,7 @@ div.search-group{
     position:relative;
     width:90%;
     margin:0px auto;
+    text-align:center; /* Horizontall align elements in the center */
 }
 
 /*
@@ -133,7 +126,7 @@ div.search-group a:link,a:visited{
 }
 
 div.search-group a:hover,a:active{
-    background-color:#C4F755;    
+    background-color:#c4f755;    
 }
 
 div.search-group input.input-search:focus + a.search-icon{
