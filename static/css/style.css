@@ -4,7 +4,7 @@
 
 *{
     box-sizing: border-box;
-    font-family: 'Roboto','Lobster',sans-serif;
+    font-family: 'Roboto',sans-serif;
 }
 
 /*
@@ -47,7 +47,7 @@ div.header-text span{
 }
 
 div.header-text h3{
-    font-family:'Bungee Inline','Lobster';
+    font-family:'Bungee Inline';
     font-weight:normal;
 }
 
@@ -58,7 +58,7 @@ div.search-box{
     position: relative;
     max-width: 100%;
     margin: 0px auto;
-    margin-top: 70px;
+    margin-top: 100px;
     padding: 5px;
 }
 
@@ -97,28 +97,24 @@ div.search-group > *{
 
 */
 
-div.search-group input.input-search,i{
+div.search-group input.input-search{
     display:inline-block;
     vertical-align:top;/* Vertical align items  */
-}
-
-div.search-group input.input-search{
     position:relative;
     width:30%;
+    border-radius:0px;
+    border: 1px solid #000000;
 }
 
-div.search-group i{
-    border:1px solid gray;
-    height:30px;
-    width:30px;
-    margin-left:-5px;
-    padding-top:5px;
+div.search-group input.input-search:focus{
+    border: 1px solid #8BB726;
+    box-shadow:0px 0px 1px gray;
 }
 
 div.search-group a{
     text-decoration:none;
     cursor:pointer;
-    border:1px solid gray;
+    border:1px solid #000000;
     height:30px;
     width:30px;
     margin-left:-5px;
@@ -133,13 +129,20 @@ div.search-group a:hover,a:active{
     background-color:#c4f755;    
 }
 
+div.search-group input.input-search:focus + a.search-icon{
+    border: 1px solid #8BB726;
+    box-shadow: 0px 0px 1px gray;
+}
+
+div.search-group a.fa-search{
+    color:#000000;
+}
+
 /*
     Horizontal ruler specific settings here
 */
-div.hr hr{
-    color: #8BB726;
-    width: 90%;
-    margin: 0px auto;
+div.hr{
+    border: 1px solid #8BB726;
 }
 
 /*
@@ -148,11 +151,17 @@ div.hr hr{
 div.search-result-box{
     position:relative;
     width:90%;
+    margin-top:10px !important;
     margin: 0px auto;
     text-align:center;
+    font-size:14px;
 }
 
 div.search-result-box p{
     font-family:'Shadows Into Light';
     font-size:x-large;
+}
+
+div.search-result-box a{
+    cursor:pointer;
 }

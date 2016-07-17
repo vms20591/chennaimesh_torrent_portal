@@ -1,44 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<html lang="en" ng-app="torrentApp">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
 
-		<title>Torrent Portal - Chennai Mesh Network</title>
-		
-    	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-    	<link href='https://fonts.googleapis.com/css?family=Roboto|Lobster|Bungee+Inline|Shadows+Into+Light' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="style.css" />
-		
-		<!--[if IE]>
-			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-	</head>
-	<body onload="return init();">
-	    <div class="container">
-	        <div class="header">
-	            <div class="header-text">
-	                <h3>Torrent Stash</h3>
-	                <span>Community run place for open knowledge</span>
-	            </div>
-	        </div>
-	        <div class="search-box">
-	            <h2>Search</h2>
-	            <div class="search-group">
-    	            <input class="input-search" type="text"/>
-            	    <a class="fa fa-search"></a>
-    	        </div>
-	            <p>Search for your favorite torrents and magnets !</p>
-	        </div>
-	        <div class="hr">
-	            <hr/>
-	        </div>
-	        <div class="search-result-box">
-                <p> &#9785; Sorry ! No content here as of now &#9785;</p>      
-	        </div>
-	    </div>
-	    
-	    <script src="main.js"></script>
-	</body>
+        <title>Torrent Portal - Chennai Mesh Network</title>
+        
+        <!-- Font Awesome CSS -->
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+        <!-- Google Font CSS -->
+        <link href='https://fonts.googleapis.com/css?family=Roboto|Bungee+Inline' rel='stylesheet' type='text/css'>
+        
+        <!-- Custom CSS  -->
+        <link rel="stylesheet" type="text/css" href="static/css/style.css" />
+
+        <!-- CSS Reset -->
+        <link rel="stylesheet" href="static/css/normalize.css">
+
+        <!-- Milligram CSS minified -->
+        <link rel="stylesheet" href="static/css/milligram.min.css">
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="container" ng-controller="torrentHomeController">
+            <div class="header">
+                <div class="header-text">
+                    <h3>Torrent Stash</h3>
+                    <span>Community run place for open knowledge</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <div class="search-box">
+                        <h2>Search</h2>
+                        <div class="search-group">
+                            <input class="input-search" ng-model="searchInput" type="text"/>
+                            <a class="search-icon fa fa-search"></a>
+                        </div>
+                        <p>Search for your favorite torrents and magnets !</p>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="column hr">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column">
+                    <div class="search-result-box">
+                        <h2>Results</h2>
+                        <p ng-bind="searchInput"></p>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Torrent Name</th>
+                                    <th>Category</th>
+                                    <th>Torrent/Magnet</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="torrent in torrentResults">
+                                    <td ng-bind="$index+1"></td>
+                                    <td ng-bind="torrent.name"></td>
+                                    <td ng-bind="torrent.category"></td>
+                                    <td ng-if="torrent.type==='url'">
+                                        <a ng-href="{{torrent.url}}" target="_blank">Torrent</a>
+                                    </td>
+                                    <td ng-if="torrent.type==='magnet'">
+                                        <a ng-href="{{torrent.url}}" class="fa fa-magnet"></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Script import  -->
+        <script src="static/js/ext/angular.js"></script>
+	<script src="static/js/app/app.js"></script>
+	<script src="static/js/app/controller.js"></script>
+    </body>
 </html>
