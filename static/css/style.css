@@ -97,6 +97,14 @@ div.search-group > *{
 
 */
 
+/*
+    Small hack to have <input> display responsive
+*/
+@media screen and (max-width: 768px) {
+    div.search-group input.input-search {
+    width: 80%;
+}
+
 div.search-group input.input-search{
     display:inline-block;
     vertical-align:top;/* Vertical align items  */
