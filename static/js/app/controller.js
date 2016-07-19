@@ -1,22 +1,41 @@
 (function(){
-	var app=angular.module('torrentController',[]);
+	var app=angular.module('torrentController',['torrentService']);
 	
-	app.controller('torrentHomeController',function($scope){
-	    $scope.searchInput="";	
-            $scope.torrentResults=[
-                {
-                    name:"Arch",
-                    category:"Linux",
-                    type:"url",
-                    url:"http://archlinux.org"
-                },
-                {
-                    name:"Fedora",
-                    category:"Linux",
-                    type:"magnet",
-                    url:"magnet:?xt.1=urn:sha1:YNCKHTQCWBTRNJIV4WNAE52SJUQCZO5C&xt.2=urn:sha1:TXGCZQTH26NL6OUQAJJPFALHG2LTGBC7"
-                }
+        var errorTexts={
+            emptyTorrent:'No Torrents found !!!',
+            errorTorrent:'Error occured while retrieving Torrents !!!'
+        };
 
-            ];
-	});
+	app.controller('torrentHomeController',function($scope,torrentService){
+            
+        $scope.showTorrents=true;
+        $scope.errorText=''
+
+        //method to call torrent service and retrieve the list of folders and populate $scope.folders.folderList
+        $scope.retrieveTorrents=function(){
+            var promise=torrentService.retrieveTorrents();
+                                                
+            promise.then(function(data){
+                if(data && data.torrents){
+                    var result=data.torrents;
+
+                    if(result && result.length>0){
+                        $scope.torrents=result;
+                    }
+                }
+                else{
+                    $scope.showTorrents=false;
+                    $scope.errorText=errorTexts.emptyTorrent
+                    console.log(errorTexts.emptyTorrent);
+                }
+            },function(data){
+                $scope.showTorrents=false;
+                $scope.errorText=errorTexts.errorTorrent;
+                console.log(errorTexts.errorTorrent);
+            });
+        };
+
+        $scope.retrieveTorrents();
+
+    });
 })();

@@ -56,8 +56,7 @@
                 <div class="column">
                     <div class="search-result-box">
                         <h2>Results</h2>
-                        <p ng-bind="searchInput"></p>
-                        <table>
+                        <table ng-show="showTorrents">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -67,19 +66,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="torrent in torrentResults">
+                                <tr ng-repeat="torrent in torrents">
                                     <td ng-bind="$index+1"></td>
                                     <td ng-bind="torrent.name"></td>
                                     <td ng-bind="torrent.category"></td>
-                                    <td ng-if="torrent.type==='url'">
-                                        <a ng-href="{{torrent.url}}" target="_blank">Torrent</a>
+                                    <td ng-if="torrent.type==='torrent'">
+                                        <a ng-href="{[{torrent.url}]}" target="_blank">Torrent</a>
                                     </td>
                                     <td ng-if="torrent.type==='magnet'">
-                                        <a ng-href="{{torrent.url}}" class="fa fa-magnet"></a>
+                                        <a ng-href="{[{torrent.url}]}" class="fa fa-magnet"></a>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
+                        <h4 style="color:red;" ng-hide="showTorrents" ng-bind="errorText"></h4>
                     </div>
                 </div>
             </div>
@@ -89,5 +89,6 @@
         <script src="static/js/ext/angular.js"></script>
 	<script src="static/js/app/app.js"></script>
 	<script src="static/js/app/controller.js"></script>
+        <script src="static/js/app/service.js"></script>
     </body>
 </html>
