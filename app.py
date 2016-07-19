@@ -20,8 +20,16 @@ app.config['MONGO_DBNAME']="torrentstash"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['BASE_DIR']=BASE_DIR
 
-#Create Mongo object
-mongo=PyMongo(app)
+#Retrieve or Create Mongo object
+#Added this so as to prevent the following error,
+#"UserWarning: MongoClient opened before fork. Create MongoClient with connect=False, or create client after forking"
+#https://github.com/MongoEngine/mongoengine/issues/1234
+def get_db():
+    if hasattr(app,'mongo'):
+        return app.mongo.db
+    else:
+        app.mongo=PyMongo(app)
+        return app.mongo.db
 
 #Helper to check if a file is in allowed list
 def allowed_file(filename):
@@ -38,7 +46,7 @@ def index_view():
 def torrent_list_view():
     response_body={}
         
-    for torrent in mongo.db.torrents.find():
+    for torrent in get_db().torrents.find():
         if torrent['type']=='torrent':
             torrent['url']=url_for('uploaded_file',filename=torrent['url'],_extername=True)
         response_body.setdefault("torrents",[]).append(torrent)
