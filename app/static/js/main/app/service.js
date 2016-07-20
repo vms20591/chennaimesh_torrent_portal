@@ -2,7 +2,7 @@
     var torrentService=angular.module('torrentService',[]);
 
         function service($http,$q){
-            var defer=$q.defer();
+            var defer;
 
             var successCallback=function(response){
                 defer.resolve(response.data);
@@ -13,10 +13,17 @@
             };
                                     
             //Get Torrents from DB
-            this.retrieveTorrents=function(bookmark){
+            this.retrieveTorrents=function(name){
+                defer=$q.defer();
+
+                if(!name)
+                    name='';
+
+                name=encodeURIComponent(name);
+
                 $http({
                     method:'get',
-                    url:'torrents/',
+                    url:'torrents/?q='+name,
                     config:{
                         headers:{
                             'Content-Type':'application/json'

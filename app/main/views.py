@@ -1,14 +1,14 @@
 from . import main_blueprint as main
 from .. import get_db,allowed_file
 from flask.views import MethodView
-from flask import render_template,current_app,url_for
+from flask import render_template,current_app,url_for,request
 from flask import json,send_from_directory
 from bson import json_util
 
 #Load the main page
 class IndexView(MethodView):
     methods=['GET']
-    
+
     def get(self):
         return render_template('main/index.html')
 
@@ -18,18 +18,30 @@ class TorrentListView(MethodView):
 
     def get(self):
         response_body={}
-           
-        for torrent in get_db().torrents.find():
+
+        if request.args.get('q') and request.args.get('q').strip()!='':
+            q=request.args.get('q')
+            q={
+                "name":{
+                    '$regex':q
+                }
+            }
+
+            torrents=get_db().torrents.find(q)
+        else:
+            torrents=get_db().torrents.find()
+
+        for torrent in torrents:
             if torrent['type']=='torrent':
                 torrent['url']=url_for('main.uploaded_file_view',filename=torrent['url'],_external=True)
             response_body.setdefault("torrents",[]).append(torrent)
-                                                                    
+
         response_headers=[('Content-Type','application/json'),('Content-Length',len(response_body))]
-                                                                        
+
         status_code=200
 
         response_body=json.dumps(response_body,default=json_util.default)
-                                                                                                        
+
         response=(response_body,status_code,response_headers)
 
         return response

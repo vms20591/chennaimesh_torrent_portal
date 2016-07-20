@@ -52,7 +52,14 @@ class TorrentListViewTestCase(unittest.TestCase):
         result=self.client.get('/main/torrents/')
         self.assertNotEqual(result.data,'{}')
 
-    def tetEmptyTorrentResult(self):
-        result=self.client.get('/main/torrents/')
+    def testEmptyTorrentResult(self):
+        result=self.client.get('/main/torrents/?q=123')
         self.assertEqual(result.data,'{}')
 
+    def testTorrentSearchWithEmptyQuery(self):
+        result=self.client.get('/main/torrents/?q=')
+        self.assertNotEqual(result.data,'{}')
+
+    def testTorrentSearchWithNonEmptyQuery(self):
+        result=self.client.get('/main/torrents/?q=Arch')
+        self.assertNotEqual(result.data,'{}')

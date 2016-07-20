@@ -30,7 +30,7 @@
         <div class="container" ng-controller="torrentHomeController">
             <div class="header">
                 <div class="header-text">
-                    <h3>Torrent Stash</h3>
+                    <h3><a style="text-decoration:none;color:#FFFFFF;" href="{{url_for('main.index_view',_external=True)}}">Torrent Stash</a></h3>
                     <span>Community run place for open knowledge</span>
                 </div>
             </div>
@@ -39,8 +39,13 @@
                     <div class="search-box">
                         <h2>Search</h2>
                         <div class="search-group">
-                            <input class="input-search" ng-model="searchInput" type="text"/>
-                            <a class="search-icon fa fa-search"></a>
+                            <input class="input-search" ng-model="searchQuery" type="text"/>
+                            <a class="search-icon fa fa-search" ng-click="searchTorrents();"></a>
+                        </div>
+                        <div style="text-align:center;" ng-switch on="searchState">
+                            <i style="display:block;" ng-switch-when="1">searching stash...</i>
+                            <i style="display:block;color:red;" ng-switch-when="2">No Torrents match your query!!!</i>
+                            <i style="display:block;color:red;" ng-switch-when="3">Error occured while searching!!!</i>
                         </div>
                         <p>Search for your favorite torrents and magnets !</p>
                     </div>
@@ -56,30 +61,38 @@
                 <div class="column">
                     <div class="search-result-box">
                         <h2>Results</h2>
-                        <table ng-show="showTorrents">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Torrent Name</th>
-                                    <th>Category</th>
-                                    <th>Torrent/Magnet</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="torrent in torrents">
-                                    <td ng-bind="$index+1"></td>
-                                    <td ng-bind="torrent.name"></td>
-                                    <td ng-bind="torrent.category"></td>
-                                    <td ng-if="torrent.type==='torrent'">
-                                        <a ng-href="{[{torrent.url}]}" target="_blank">Torrent</a>
-                                    </td>
-                                    <td ng-if="torrent.type==='magnet'">
-                                        <a ng-href="{[{torrent.url}]}" class="fa fa-magnet"></a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <h4 style="color:red;" ng-hide="showTorrents" ng-bind="errorText"></h4>
+
+                        <div ng-switch on="applicationState">
+                            <img ng-switch-when="0" src="{{url_for('static',filename='img/ball.svg',_external=True)}}" alt="loading..."/>
+                            <i style="display:block;" ng-switch-when="0">loading torrents...</i>
+
+                            <table ng-switch-when="1">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Torrent Name</th>
+                                        <th>Category</th>
+                                        <th>Torrent/Magnet</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="torrent in torrents">
+                                        <td ng-bind="$index+1"></td>
+                                        <td ng-bind="torrent.name"></td>
+                                        <td ng-bind="torrent.category"></td>
+                                        <td ng-if="torrent.type==='torrent'">
+                                            <a ng-href="{[{torrent.url}]}" target="_blank">Torrent</a>
+                                        </td>
+                                        <td ng-if="torrent.type==='magnet'">
+                                            <a ng-href="{[{torrent.url}]}" class="fa fa-magnet"></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h4 style="color:red;" ng-switch-when="2" ng-bind="errorText"></h4>
+                            <h4 style="color:red;" ng-switch-when="3" ng-bind="errorText"></h4>
+                        </div>
                     </div>
                 </div>
             </div>
