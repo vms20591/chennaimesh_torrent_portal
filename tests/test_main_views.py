@@ -1,6 +1,7 @@
 import os
 import unittest
 from app import create_app,app_config
+from flask import json
 
 config=app_config.get(os.environ.get('FLASK_CONIFG','testing'))
 
@@ -50,16 +51,20 @@ class TorrentListViewTestCase(unittest.TestCase):
 
     def testNonEmptyTorrentResult(self):
         result=self.client.get('/main/torrents/')
-        self.assertNotEqual(result.data,'{}')
+        data=json.loads(result.data)
+        self.assertIsNotNone(data.get('torrents'))
 
     def testEmptyTorrentResult(self):
         result=self.client.get('/main/torrents/?q=123')
-        self.assertEqual(result.data,'{}')
+        data=json.loads(result.data)
+        self.assertIsNone(data.get('torrents'))
 
     def testTorrentSearchWithEmptyQuery(self):
         result=self.client.get('/main/torrents/?q=')
-        self.assertNotEqual(result.data,'{}')
+        data=json.loads(result.data)
+        self.assertIsNotNone(data.get('torrents'))
 
     def testTorrentSearchWithNonEmptyQuery(self):
         result=self.client.get('/main/torrents/?q=Arch')
-        self.assertNotEqual(result.data,'{}')
+        data=json.loads(result.data)
+        self.assertIsNotNone(data.get('torrents'))
