@@ -18,7 +18,7 @@ class TorrentListView(MethodView):
 
     def get(self):
         response_body={}
-            
+           
         for torrent in get_db().torrents.find():
             if torrent['type']=='torrent':
                 torrent['url']=url_for('main.uploaded_file_view',filename=torrent['url'],_external=True)

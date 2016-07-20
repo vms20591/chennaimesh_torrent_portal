@@ -25,11 +25,15 @@ class DevelopmentConfig(Config):
 class TestingConfig(Config):
     #switching to test config
     TESTING=True
+    
+    MONGO_DBNAME="torrentstash_test"
 	
 class ProductionConfig(Config):
     #swtiching off debug and testing
     DEBUG=False
     TESTING=False
+
+    MONGO_DBNAME="torrentstash_prod"
 
 #configuration factor object
 app_config={

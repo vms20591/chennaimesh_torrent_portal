@@ -1,7 +1,7 @@
 import os
 from app import create_app
 from flask_script import Manager,Shell,Server
-from config import app_config
+from app import app_config
 
 config_object=app_config.get(os.environ.get('FLASK_CONIFG','default'))
 

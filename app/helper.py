@@ -10,7 +10,8 @@ def get_db():
         return current_app.mongo.db
     else:
         current_app.mongo=PyMongo(current_app._get_current_object())
-        return current_app.mongo.db
+    
+    return current_app.mongo.db
 
 #Helper to check if a file is in allowed list
 def allowed_file(filename):

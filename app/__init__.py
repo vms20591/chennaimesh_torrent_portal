@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import redirect,url_for
 from .helper import get_db,allowed_file
+from .config import app_config
 
 def create_app(config_object):
     app=Flask(__name__)	
