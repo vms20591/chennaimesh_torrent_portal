@@ -2,6 +2,7 @@
 	var app=angular.module('torrentController',['torrentService']);
 	
         var errorTexts={
+            loadingTorrent:'searching stash...',
             emptyTorrent:'No Torrents found !!!',
             errorTorrent:'Error occured while retrieving Torrents !!!'
         };
@@ -45,6 +46,7 @@
             var promise=torrentService.retrieveTorrents($scope.searchQuery);
             
             $scope.searchState=1;
+            $scope.errorText=errorTexts.loadingTorrent;
 
             promise.then(function(data){
                 if(data && data.torrents){
@@ -67,7 +69,6 @@
                 console.log(errorTexts.errorTorrent);
             });
         };
-
 
         $scope.retrieveTorrents();
 

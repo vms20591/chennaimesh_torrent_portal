@@ -1,5 +1,5 @@
 (function(){
-	var app=angular.module('torrentApp',['torrentController']);
+	var app=angular.module('torrentApp',['torrentController','ngclipboard']);
 
         //Added this to avoid clash with django's template loader
         app.config(function($interpolateProvider) {
