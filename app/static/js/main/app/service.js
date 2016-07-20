@@ -16,7 +16,7 @@
             this.retrieveTorrents=function(bookmark){
                 $http({
                     method:'get',
-                    url:'/torrents/',
+                    url:'torrents/',
                     config:{
                         headers:{
                             'Content-Type':'application/json'

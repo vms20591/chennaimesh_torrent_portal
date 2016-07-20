@@ -14,13 +14,13 @@
         <link href='https://fonts.googleapis.com/css?family=Roboto|Bungee+Inline' rel='stylesheet' type='text/css'>
         
         <!-- Custom CSS  -->
-        <link rel="stylesheet" type="text/css" href="static/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/style.css',_external=True)}}" />
 
         <!-- CSS Reset -->
-        <link rel="stylesheet" href="static/css/normalize.css">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/normalize.css',_external=True)}}">
 
         <!-- Milligram CSS minified -->
-        <link rel="stylesheet" href="static/css/milligram.min.css">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/milligram.min.css',_external=True)}}">
 
         <!--[if IE]>
             <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -86,9 +86,9 @@
         </div>
 
         <!-- Script import  -->
-        <script src="static/js/ext/angular.js"></script>
-	<script src="static/js/app/app.js"></script>
-	<script src="static/js/app/controller.js"></script>
-        <script src="static/js/app/service.js"></script>
+        <script src="{{url_for('static',filename='js/ext/angular.js',_external=True)}}"></script>
+        <script src="{{url_for('static',filename='js/main/app/app.js',_external=True)}}"></script>
+        <script src="{{url_for('static',filename='js/main/app/controller.js',_external=True)}}"></script>
+        <script src="{{url_for('static',filename='js/main/app/service.js',_external=True)}}"></script>
     </body>
 </html>
