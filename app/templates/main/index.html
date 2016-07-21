@@ -62,7 +62,7 @@
                     <div class="search-result-box">
                         <h2>Results</h2>
 
-                        <div ng-switch on="applicationState">
+                        <div ng-cloak ng-switch on="applicationState">
                             <img ng-switch-when="0" src="{{url_for('static',filename='img/ball.svg',_external=True)}}" alt="loading..."/>
                             <i style="display:block;" ng-switch-when="0">loading torrents...</i>
 
@@ -80,17 +80,14 @@
                                         <td ng-bind="$index+1"></td>
                                         <td ng-bind="torrent.name"></td>
                                         <td ng-bind="torrent.category"></td>
-                                        <td ng-if="torrent.type==='torrent'">
-                                            <a ng-href="{[{torrent.url}]}" target="_blank">Torrent</a>
-                                            <a href="" style="text-decoration:none;color:#7CB10A;" ngclipboard data-clipboard-text="{[{torrent.url}]}">
+                                        <td>
+                                            <a ng-if="torrent.type==='magnet'" ng-href="{[{torrent.url}]}" class="no-decoration fa fa-magnet"></a> 
+                                            <a ng-if="torrent.type==='torrent'" ng-href="{[{torrent.url}]}" class="no-decoration">Torrent</a> |         
+                                            <a href="" class="no-decoration" ng-click="copiedToClipboard($index);" 
+                                                ngclipboard data-clipboard-text="{[{torrent.url}]}">
                                                 Clipboard
                                             </a>
-                                        </td>
-                                        <td ng-if="torrent.type==='magnet'">
-                                            <a ng-href="{[{torrent.url}]}" style="color:#7CB10A;" class="fa fa-magnet"></a> | 
-                                            <a href="" style="text-decoration:none;color:#7CB10A;" ngclipboard data-clipboard-text="{[{torrent.url}]}">
-                                                Clipboard
-                                            </a>
+                                            <span ng-class="{'copied-text':copied===$index}">Copied!!!</span>
                                         </td>
                                     </tr>
                                 </tbody>

@@ -10,7 +10,7 @@ class Config(object):
     TESTING=False
 
     ALLOWED_EXTENSIONS = set(['torrent'])
-    BASE_DIR=os.path.dirname(os.path.abspath(__file__))
+    BASE_DIR=os.environ.get('FLASK_UPLOAD_DIR') or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     UPLOAD_FOLDER = os.path.join(BASE_DIR,'uploads')
 
     MONGO_DBNAME="torrentstash"

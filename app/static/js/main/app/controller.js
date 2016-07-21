@@ -7,7 +7,7 @@
             errorTorrent:'Error occured while retrieving Torrents !!!'
         };
 
-	app.controller('torrentHomeController',function($scope,torrentService){
+	app.controller('torrentHomeController',function($scope,torrentService,$timeout){
             
         $scope.searchState=0;
         $scope.applicationState=0;;
@@ -69,6 +69,14 @@
                 console.log(errorTexts.errorTorrent);
             });
         };
+
+        $scope.copiedToClipboard=function(index){
+           $scope.copied=index;
+
+           $timeout(function(){
+                $scope.copied=null;
+           },1000);
+        }
 
         $scope.retrieveTorrents();
 

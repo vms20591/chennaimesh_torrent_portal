@@ -166,6 +166,20 @@ div.search-result-box a{
     cursor:pointer;
 }
 
+div.search-result-box span.copied-text{
+    color:#FFFFFF;
+    background-color:#41413F;
+    padding:3px;
+    border-radius:3px;
+    display:inline;
+    opacity:0.6;
+}
+
+div.search-result-box a.no-decoration{
+    text-decoration:none;
+    color:#7CB10A;
+}
+
 /*
     Small hack to have <input> display responsive
 */
