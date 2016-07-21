@@ -66,7 +66,7 @@
                             <img ng-switch-when="0" src="{{url_for('static',filename='img/ball.svg',_external=True)}}" alt="loading..."/>
                             <i style="display:block;" ng-switch-when="0">loading torrents...</i>
 
-                            <table ng-switch-when="1">
+                            <table id="search-result-table" ng-switch-when="1">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -87,7 +87,7 @@
                                                 ngclipboard data-clipboard-text="{[{torrent.url}]}">
                                                 Clipboard
                                             </a>
-                                            <span ng-class="{'copied-text':copied===$index}">Copied!!!</span>
+                                            <span ng-class="{'copied-text':copied===$index,'hide':copied!==$index}">Copied!!!</span>
                                         </td>
                                     </tr>
                                 </tbody>

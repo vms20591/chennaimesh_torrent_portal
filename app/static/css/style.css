@@ -180,6 +180,23 @@ div.search-result-box a.no-decoration{
     color:#7CB10A;
 }
 
+table#search-result-table td, table#search-result-table th{
+    padding:10px;
+}
+
+table#search-result-table th{
+    background-color:#7cb10a;
+    color:#FFFFFF;
+}
+
+table#search-result-table tr:nth-child(even){
+    background-color: #f1f2f1;
+}
+
+.hide{
+    display:none;
+}
+
 /*
     Small hack to have <input> display responsive
 */
